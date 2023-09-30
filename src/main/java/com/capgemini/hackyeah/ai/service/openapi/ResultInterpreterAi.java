@@ -93,7 +93,6 @@ public class ResultInterpreterAi {
 
         HttpEntity<String> chat = new HttpEntity<>(requestJson, headers);
         System.out.println(chat.getBody());
-        System.out.println(gptConfig);
         return restTemplate.postForEntity(gptConfig.getUrl(), chat, String.class);
     }
 
