@@ -1,0 +1,44 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://database-1.cdndy6cizqny.us-east-1.rds.amazonaws.com:5432/hashok
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
+  servlet:
+    multipart:
+      max-file-size: 30MB
+      max-request-size: 30MB
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+    database: postgresql
+
+gpt:
+  secret: "Bearer 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"
+  #  secret: ""
+  url: "https://api.openai.com/v1/chat/completions"
+
+eden:
+  secret: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiMTNiOGVkMWQtMWM1Ni00MzViLTlhOTAtMDE5ZWE2YTNhOTJlIiwidHlwZSI6ImFwaV90b2tlbiJ9.bd-vICZCFbL5WWi00byP4CRSrPEIJlWV9AlyMMOPbLY"
+  url: "https://api.edenai.run/v2/image/object_detection"
+  provider: "amazon"
+
+application:
+  security:
+    jwt:
+      secret-key: 404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970
+      expiration: 86400000 # a day
+      refresh-token:
+        expiration: 604800000 # 7 days
+logging:
+  level:
+    web: INFO
+server:
+  port: 8000
