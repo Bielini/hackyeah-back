@@ -17,12 +17,12 @@ spring:
     show-sql: false
     properties:
       hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
     database: postgresql
 
 gpt:
-  secret: "Bearer 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"
-  #  secret: ""
+  secret: "QmVhcmVyIHNrLUVuS0x5T2FqUGFUUENpaU9udDA4VDNCbGJrRkp6WVIxbXhQMmlCMXUyMVhZck5XVg=="
   url: "https://api.openai.com/v1/chat/completions"
 
 eden:
@@ -41,4 +41,4 @@ logging:
   level:
     web: INFO
 server:
-  port: 8080
+  port: 8000
