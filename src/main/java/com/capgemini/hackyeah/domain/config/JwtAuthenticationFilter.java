@@ -34,7 +34,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         if (request.getServletPath().contains("/api/v1/auth") ||
                 request.getServletPath().contains("/analyze") ||
                 request.getServletPath().contains("/api/users/**") ||
-                request.getServletPath().contains("/leader/**")) {
+                request.getServletPath().contains("/api/leaderboard/**")) {
             filterChain.doFilter(request, response);
             return;
         } else if (request.getServletPath().contains("/done")) {

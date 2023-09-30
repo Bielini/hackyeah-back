@@ -64,7 +64,7 @@ public class SecurityConfiguration {
                         "/done",
                         "/api/detected-waste/**",
                         "/api/v1/auth/**",
-                        "/leader/**"
+                        "/api/leaderboard/**"
                 )
                 .permitAll()
 
