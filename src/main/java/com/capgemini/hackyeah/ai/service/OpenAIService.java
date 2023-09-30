@@ -45,7 +45,6 @@ public class OpenAIService {
     private final GPTConfig gptConfig;
 
     public AnalyzeResponse getWasteSuggestion(AnalyzeRequest request) {
-//        log.trace(request.getImage());
         MultipartFile file = Converter.base64ToMultipartFile(request);
 
         String body = getWastesFromImage(file);
