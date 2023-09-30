@@ -1,5 +1,6 @@
 package com.capgemini.hackyeah.domain.model;
 
+import com.capgemini.hackyeah.domain.model.point.Point;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +10,9 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @Builder
@@ -21,11 +24,15 @@ public class User implements UserDetails {
 
     @Id
     @GeneratedValue
-    private Integer id;
+    private Long id;
     private String firstname;
     private String lastname;
     private String email;
     private String password;
+
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id",referencedColumnName = "id")
+    private Set<Point> point=new HashSet<>();
 
     @Enumerated(EnumType.STRING)
     private Role role;
