@@ -3,7 +3,6 @@ package com.capgemini.hackyeah.point.service;
 
 import com.capgemini.hackyeah.domain.model.User;
 import com.capgemini.hackyeah.domain.model.point.Point;
-import com.capgemini.hackyeah.point.dto.PointDTO;
 import com.capgemini.hackyeah.point.repository.PointRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,12 +16,12 @@ public class PointService {
 
     private final PointRepository pointRepository;
 
-    public void addPoint(PointDTO pointDTO){
+    public void addPoint(Integer points, User user){
 
         Point point= new Point();
-        point.setPoint(pointDTO.getPoint());
+        point.setPoint(points);
         point.setDateEarned(Date.from(Instant.now()));
-        point.setUserId(4704L);
+        point.setUserId(user.getId());
 
         pointRepository.save(point);
 
