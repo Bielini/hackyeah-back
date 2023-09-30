@@ -22,10 +22,8 @@ public class OpenAIController {
     OpenAIService openAIService;
 
     @PostMapping("/analyze")
-    public AnalyzeResponse generateImages(@RequestBody String image) {
-        AnalyzeRequest request = new AnalyzeRequest();
+    public AnalyzeResponse generateImages(@RequestBody AnalyzeRequest request) {
         request.setCollectorId(1);
-        request.setImage(image);
         return openAIService.getWasteSuggestion(request);
     }
 
