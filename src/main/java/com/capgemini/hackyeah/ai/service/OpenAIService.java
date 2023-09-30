@@ -22,7 +22,6 @@ public class OpenAIService {
     private final ResultInterpreterAi resultInterpreterAi;
 
     public AnalyzeResponse getWasteSuggestion(AnalyzeRequest request) {
-
         MultipartFile file = Converter.base64ToMultipartFile(request);
         ImageResponse imageResponse = imageRecognitionAi.getWastesFromImage(file);
         AnalyzeResponse analyzeResponse = resultInterpreterAi.fillWasteTypePercentage(imageResponse);
