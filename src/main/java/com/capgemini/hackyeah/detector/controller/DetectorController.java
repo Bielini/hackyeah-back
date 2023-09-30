@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/api/users/{userId}/collectors/{collectorId}/detectors")
 @RequiredArgsConstructor
 public class DetectorController {
