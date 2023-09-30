@@ -21,8 +21,7 @@ spring:
     database: postgresql
 
 gpt:
-  secret: "Bearer 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"
-  #  secret: ""
+  secret: "QmVhcmVyIHNrLUVuS0x5T2FqUGFUUENpaU9udDA4VDNCbGJrRkp6WVIxbXhQMmlCMXUyMVhZck5XVg=="
   url: "https://api.openai.com/v1/chat/completions"
 
 eden:

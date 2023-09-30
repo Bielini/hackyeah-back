@@ -16,6 +16,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.TreeMap;
@@ -65,7 +67,7 @@ public class ResultInterpreterAi {
     public ResponseEntity<String> objectRecognitionAICall(ImageResponse.Item item) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.set(HttpHeaders.AUTHORIZATION, gptConfig.getSecret());
+        headers.set(HttpHeaders.AUTHORIZATION, new String(Base64.getDecoder().decode(gptConfig.getSecret()), StandardCharsets.UTF_8));
 
 
         String label = item.getLabel();
