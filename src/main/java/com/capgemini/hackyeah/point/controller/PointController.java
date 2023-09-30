@@ -2,7 +2,6 @@ package com.capgemini.hackyeah.point.controller;
 
 
 import com.capgemini.hackyeah.point.dto.PointDTO;
-import com.capgemini.hackyeah.point.repository.PointRepository;
 import com.capgemini.hackyeah.point.service.PointService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,7 +19,7 @@ public class PointController {
     @PostMapping(value = "/add")
     public void addPoint(@RequestBody PointDTO pointDto){
 
-        pointService.addPoint(pointDto);
+        //pointService.addPoint(pointDto.getPoint(), null);
 
     }
 }
