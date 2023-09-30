@@ -3,12 +3,15 @@ package com.capgemini.hackyeah.point.service;
 
 import com.capgemini.hackyeah.domain.model.User;
 import com.capgemini.hackyeah.domain.model.point.Point;
+import com.capgemini.hackyeah.domain.repository.UserRepository;
 import com.capgemini.hackyeah.point.repository.PointRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
 import java.util.Date;
+
+import static java.util.Objects.nonNull;
 
 @Service
 @RequiredArgsConstructor
@@ -20,7 +23,7 @@ public class PointService {
 
     public void addPoint(Integer points, User user){
 
-        Long userId=user.getId;
+        Long userId=user.getId();
 
         Point point= new Point();
         point.setPoint(points);
@@ -28,11 +31,13 @@ public class PointService {
         point.setUserId(user.getId());
         pointRepository.save(point);
 
-//        get existing point for the user from the database and update it with the new point.
+        Long updatePoint = 0L;
 
-        User user=userRepository.getReferenceById(userId);
+        if(nonNull(user.getTotalPoints())){
+            updatePoint+=user.getTotalPoints();
+        }
 
-        Long updatePoint=user.getTotalPoints()+pointDTO.getPoint();
+        updatePoint+=points;
 
         user.setTotalPoints(updatePoint);
 
