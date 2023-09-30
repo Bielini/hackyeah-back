@@ -1,6 +1,7 @@
 package com.capgemini.hackyeah.point.controller;
 
 
+import com.capgemini.hackyeah.point.dto.LeaderDto;
 import com.capgemini.hackyeah.point.service.PointService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +18,7 @@ public class LeaderBoardController {
     private final PointService pointService;
 
     @GetMapping
-    public List<String> getLeaderBoard(){
+    public List<LeaderDto> getLeaderBoard(){
         return pointService.getAllLeadersForBoard();
     }
 }
