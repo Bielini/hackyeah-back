@@ -2,7 +2,7 @@
 FROM openjdk:17-jdk-slim
 
 # Define the argument for the JAR file
-ARG JAR_FILE=target/*.jar
+ARG JAR_FILE=*.jar
 
 # Copy the built JAR file into the image
 COPY ${JAR_FILE} app.jar
