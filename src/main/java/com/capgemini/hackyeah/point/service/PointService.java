@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.time.Instant;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static java.util.Objects.nonNull;
 
@@ -23,9 +24,6 @@ public class PointService {
     private final UserRepository userRepository;
 
     public void addPoint(Integer points, User user){
-
-        Long userId=user.getId();
-
         Point point= new Point();
         point.setPoint(points);
         point.setDateEarned(Date.from(Instant.now()));
@@ -47,10 +45,8 @@ public class PointService {
 
     }
 
-//    get all users with total points
-    public List<User>allDistinctUser(){
-
-
-        return userRepository.findAllByOrderByTotalPointsAsc();
+    public List<String> getAllLeadersForBoard() {
+        return userRepository.findAllByOrderByTotalPointsAsc().stream()
+                .map(User::getEmail).collect(Collectors.toList());
     }
 }
