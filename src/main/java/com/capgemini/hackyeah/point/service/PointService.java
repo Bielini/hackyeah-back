@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.Instant;
 import java.util.Date;
+import java.util.List;
 
 import static java.util.Objects.nonNull;
 
@@ -44,5 +45,12 @@ public class PointService {
         userRepository.save(user);
 
 
+    }
+
+//    get all users with total points
+    public List<User>allDistinctUser(){
+
+
+        return userRepository.findAllByOrderByTotalPointsAsc();
     }
 }
