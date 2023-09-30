@@ -32,7 +32,7 @@ public class HashokApplication {
                     .password("password")
                     .role(Role.ADMIN)
                     .build();
-            Optional<User> adminOpt = userRepository.findByEmail(admin.getEmail());
+            Optional<User> adminOpt = userRepository.findFirstByEmail(admin.getEmail());
             if (adminOpt.isEmpty()) {
                 System.out.println("Admin token: " + service.register(admin).getAccessToken());
             }
@@ -45,7 +45,7 @@ public class HashokApplication {
                     .role(Role.MANAGER)
                     .build();
 
-            Optional<User> managerOpt = userRepository.findByEmail(manager.getEmail());
+            Optional<User> managerOpt = userRepository.findFirstByEmail(manager.getEmail());
             if (managerOpt.isEmpty()) {
                 System.out.println("Manager token: " + service.register(manager).getAccessToken());
             }
