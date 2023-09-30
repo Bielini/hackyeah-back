@@ -7,7 +7,11 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.lang.NonNull;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -27,13 +31,18 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             @NonNull HttpServletResponse response,
             @NonNull FilterChain filterChain
     ) throws ServletException, IOException {
-        if (request.getServletPath().contains("/api/v1/auth")) {
+        if (request.getServletPath().contains("/api/v1/auth") || request.getServletPath().contains("/analyze") || request.getServletPath().contains("/api/users/**")) {
             filterChain.doFilter(request, response);
             return;
+        } else if (request.getServletPath().contains("/done")) {
+            if(request.getHeader("Authorization") == null || request.getHeader("Authorization").isEmpty()){
+                filterChain.doFilter(request, response);
+                return;
+            }
         } else {
             filterChain.doFilter(request, response);
             return;
-        }/*
+        }
     final String authHeader = request.getHeader("Authorization");
     final String jwt;
     final String userEmail;
@@ -60,6 +69,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         SecurityContextHolder.getContext().setAuthentication(authToken);
       }
     }
-    filterChain.doFilter(request, response);*/
+    filterChain.doFilter(request, response);
     }
 }

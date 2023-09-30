@@ -17,7 +17,7 @@ public class Detector {
     @GeneratedValue
     private Integer id;
 
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     @Column(name = "waste_type")
     private WasteType wasteType;
 
