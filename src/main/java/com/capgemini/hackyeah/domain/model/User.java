@@ -29,6 +29,7 @@ public class User implements UserDetails {
     private String lastname;
     private String email;
     private String password;
+    private Long totalPoints;
 
     @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id",referencedColumnName = "id")
