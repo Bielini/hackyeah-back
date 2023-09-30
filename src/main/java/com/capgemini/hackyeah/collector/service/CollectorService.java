@@ -35,14 +35,14 @@ public class CollectorService {
                 .address(request.getAddress())
                 .label(request.getLabel())
                 .owner(request.getOwner())
-                .user(userRepository.findById(userId).orElseThrow(() -> new EntityNotFoundException("User not found")))
+                .user(userRepository.findById(Long.valueOf(userId)).orElseThrow(() -> new EntityNotFoundException("User not found")))
                 .build();
         log.info(request.toString());
         repository.save(collector);
     }
 
     public List<CollectorDto> getUserCollectors(Integer userId) {
-        return repository.getAllByUser(userRepository.findById(userId).orElseThrow(() -> new EntityNotFoundException("User not found  "))).stream()
+        return repository.getAllByUser(userRepository.findById(Long.valueOf(userId)).orElseThrow(() -> new EntityNotFoundException("User not found  "))).stream()
                 .map(this::mapToDto).collect(Collectors.toList());
     }
 
