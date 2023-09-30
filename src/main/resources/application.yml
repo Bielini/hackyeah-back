@@ -20,7 +20,7 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
     database: postgresql
-
+    open-in-view: false
 gpt:
   secret: "QmVhcmVyIHNrLUVuS0x5T2FqUGFUUENpaU9udDA4VDNCbGJrRkp6WVIxbXhQMmlCMXUyMVhZck5XVg=="
   url: "https://api.openai.com/v1/chat/completions"
@@ -39,7 +39,6 @@ application:
         expiration: 604800000 # 7 days
 logging:
   level:
-    web: INFO
+    web: DEBUG
 server:
-  port: 8000
-  address: 0.0.0.0
+  port: 8080
