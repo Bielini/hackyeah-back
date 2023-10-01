@@ -9,6 +9,8 @@ import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,8 +33,11 @@ public class OpenAIController {
     }
 
     @PostMapping("/done")
-    public boolean generateImages(@RequestBody DoneRequest doneRequest) {
-        return detectorService.getDetectorStatus(doneRequest.getWasteType(), doneRequest.getCollectorId());
+    public ResponseEntity<String> generateImages(@RequestBody DoneRequest doneRequest) {
+
+        return detectorService.getDetectorStatus(doneRequest.getWasteType(), doneRequest.getCollectorId()) ?
+                new ResponseEntity<>(HttpStatusCode.valueOf(200)) : new ResponseEntity<>(HttpStatusCode.valueOf(201))
+                ;
     }
 
 }
