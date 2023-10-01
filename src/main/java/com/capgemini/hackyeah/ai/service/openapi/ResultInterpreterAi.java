@@ -75,7 +75,8 @@ public class ResultInterpreterAi {
 
         String requestJson =
                 "{\n" +
-                        "  \"model\": \"gpt-3.5-turbo\",\n" +
+                        "  \"model\": \"gpt-3.5-turbo-0613\",\n" +
+                        "  \"temperature\": 0.1,\n" +
                         "  \"messages\": [\n" +
                         "    {\n" +
                         "      \"role\": \"system\",\n" +
@@ -84,13 +85,12 @@ public class ResultInterpreterAi {
                         ",\n" +
                         "    {\n" +
                         "      \"role\": \"user\",\n" +
-                        "      \"content\": \"- Object: " + label + ", Confidence: " + confidence + "\"\n" +
+                        "      \"content\": \"Object: " + label + ", Confidence: " + confidence + "\"\n" +
                         "    }" +
                         ",{\n" +
                         "      \"role\": \"system\",\n" +
-                        "      \"content\": \"Provide percentage of how likely this object are included in every waste type - Paper, Glass, Paper&Metal, Bio, Mixed (00-99%). Percent - always contains two numbers. Any living entity (e.g. human, animal), should not be interpreted in this manner. - every percentage in this case should be 00 (like lady, human, cat, dog etc.). Every not alive object CAN be interpreted as wastes. The format is next: {\\\"paper\\\":\\\"XX\\\",\\\"glass\\\":\\\"XX\\\",\\\"plasticMetal\\\":\\\"XX\\\",\\\"bio\\\":\\\"XX\\\",\\\"mixed\\\":\\\"XX\\\"}\"\n" +
-                        "  }],\n" +
-                        "  \"temperature\": 0.2\n" +
+                        "      \"content\": \"You need to categorize type of waste for Object. There are 5 types that needs to be considered:Paper, Glass, Plastic&Metal, Bio, Mixed. Any living objects that are living entities should not be interpreted in this manner and be populated with only 00 percentage. Any type of food should be classified as a BIO The format of response should be: {\\\\\\\"paper\\\\\\\":\\\\\\\"XX\\\\\\\",\\\\\\\"glass\\\\\\\":\\\\\\\"XX\\\\\\\",\\\\\\\"plasticMetal\\\\\\\":\\\\\\\"XX\\\\\\\",\\\\\\\"bio\\\\\\\":\\\\\\\"XX\\\\\\\",\\\\\\\"mixed\\\\\\\":\\\\\\\"XX\\\\\\\"}\\\"\\n where each XX contains 2 digits is a percentage in range 00%-99%  of waste type.\"\n" +
+                        "}]" +
                         "}";
 
         HttpEntity<String> chat = new HttpEntity<>(requestJson, headers);
