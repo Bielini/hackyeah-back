@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/api/detected-waste/{detectorId}")
 @RequiredArgsConstructor
 public class DetectedWasteController {

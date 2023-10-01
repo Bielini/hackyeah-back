@@ -13,6 +13,7 @@ import java.util.List;
 
 @Slf4j
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/api/users/{userId}/collectors")
 @RequiredArgsConstructor
 public class CollectorController {
