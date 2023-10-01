@@ -43,15 +43,16 @@ public class ImageRecognitionAi {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
+        System.out.println(formdata);
         HttpEntity<MultiValueMap<String, Object>> chat = new HttpEntity<>(formdata, headers);
 
         ResponseEntity<String> response = restTemplate.postForEntity(edenConfig.getUrl(), chat, String.class);
+        System.out.println(response);
         return bodyToImageResponse(response.getBody());
     }
 
     private ImageResponse bodyToImageResponse(String body) {
-        body = body.substring(body.indexOf(edenConfig.getProvider()) + 8, body.indexOf("}]}}") + 3);
+        body = body.substring(body.indexOf(edenConfig.getProvider().toString()) + 8, body.indexOf("}]}}") + 3);
         log.info(body);
         try {
             ObjectMapper objectMapper = new ObjectMapper();
