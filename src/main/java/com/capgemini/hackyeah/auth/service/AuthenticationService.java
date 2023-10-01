@@ -59,7 +59,7 @@ public class AuthenticationService {
                         request.getPassword()
                 )
         );
-        var user = repository.findByEmail(request.getEmail())
+        var user = repository.findFirstByEmail(request.getEmail())
                 .orElseThrow();
         var jwtToken = jwtService.generateToken(user);
         var refreshToken = jwtService.generateRefreshToken(user);
