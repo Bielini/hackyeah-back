@@ -63,7 +63,8 @@ public class SecurityConfiguration {
                         "/analyze",
                         "/done",
                         "/api/detected-waste/**",
-                        "/api/v1/auth/**"
+                        "/api/v1/auth/**",
+                        "/api/leaderboard/**"
                 )
                 .permitAll()
 
