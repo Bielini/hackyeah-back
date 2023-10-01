@@ -39,6 +39,6 @@ application:
         expiration: 604800000 # 7 days
 logging:
   level:
-    web: DEBUG
+    web: WARN
 server:
   port: 8080
