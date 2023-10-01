@@ -75,7 +75,7 @@ public class ResultInterpreterAi {
 
         String requestJson =
                 "{\n" +
-                        "  \"model\": \"gpt-3.5-turbo-0613\",\n" +
+                        "  \"model\": \"gpt-4\",\n" +
                         "  \"temperature\": 0.1,\n" +
                         "  \"messages\": [\n" +
                         "    {\n" +
