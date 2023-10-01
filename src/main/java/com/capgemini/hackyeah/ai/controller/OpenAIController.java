@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
 @RequiredArgsConstructor
+@RestController
 @CrossOrigin(origins = "*")
 @FieldDefaults(makeFinal = true, level = AccessLevel.PUBLIC)
 public class OpenAIController {
